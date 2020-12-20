@@ -11,6 +11,7 @@
   "dependencies": {
     "@tuyapi/link": "^0.3.3",
     "@tuyapi/openapi": "^1.2.0",
+    "js-yaml": "^3.14.1",
     "ora": "^5.1.0",
     "tuyapi": "^6.1.1"
   }

@@ -106,3 +106,4 @@ dist
 # locally
 config.json
 devices.json
+sockets.yaml
