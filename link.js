@@ -1,8 +1,7 @@
 const TuyaLink = require('@tuyapi/link').wizard;
 const ora = require('ora');
-const API = require('@tuyapi/openapi');
-const {prettyDevices} = require('./common')
 const config = require('./config.json')
+const updateConfig = require("./updateDevices")
 
 async function link(options) {
 
@@ -26,6 +25,8 @@ async function link(options) {
 		spinner.fail('Device(s) failed to be registered!');
         console.error(error);
     }
+
+    await updateConfig()
 }
 
 link(config)
