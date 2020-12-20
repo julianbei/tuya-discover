@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tuyapi/cli": "^1.13.6",
     "@tuyapi/link": "^0.3.3",
     "@tuyapi/openapi": "^1.2.0",
     "ora": "^5.1.0",
