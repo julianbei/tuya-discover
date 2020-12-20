@@ -1,5 +1,5 @@
 const config = require('./config.json')
-const {findDeviceInNetwork, listNetworkDevices} = require('./networkScan')
+const {findDeviceInNetwork, listNetworkDevices, longScan} = require('./networkScan')
 const loadFromCloud = require('./loadDevices')
 const ora = require('ora');
 const {
@@ -27,7 +27,8 @@ const updateConfig = async () => {
 
     const loadNetworkSpinner = ora('scanning network for devices...').start();
     try {
-        const networkInfoList = await Promise.all(mergedDeviceList.map(findDeviceInNetwork))
+        const networkInfoList = await longScan(mergedDeviceList[0])
+        // const networkInfoList = await Promise.all(mergedDeviceList.map(findDeviceInNetwork))
         const bound = mergeDevicesInLists(mergedDeviceList, networkInfoList)
         const network = await listNetworkDevices(mergedDeviceList)
         saveDevices({bound, network})

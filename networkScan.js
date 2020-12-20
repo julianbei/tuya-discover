@@ -1,15 +1,26 @@
 const TuyAPI = require('tuyapi');
 
-const findDeviceInNetwork = async ({id, localKey}) => {
-  const device = new TuyAPI({id, key: localKey})
+const findDeviceInNetwork = async ({id, local_key}) => {
+    console.log(id, local_key);
+  const device = new TuyAPI({id, key: local_key})
   await device.find()
   const {parser, ...d } = device.device
   return d
 }
 
+const longScan = async ({id, local_key}) => {
+    const devices = new TuyAPI({id, key: local_key})
+    const options = {
+        timeout: 15,
+        all: true
+    }
+    const result = await devices.find(options)
+    return result
+}
+
 const listNetworkDevices = async (knownDevices) => {
-    const {id, localKey} = knownDevices[0]
-    const device = new TuyAPI({id, key: localKey})
+    const {id, local_key} = knownDevices[0]
+    const device = new TuyAPI({id, key: local_key})
     await device.find()
 
     const localList = knownDevices.map(d => d.id)
@@ -44,5 +55,6 @@ const listNetworkDevices = async (knownDevices) => {
 
 module.exports = {
     findDeviceInNetwork,
-    listNetworkDevices
+    listNetworkDevices,
+    longScan
 }

@@ -7,15 +7,30 @@ const writeOutYaml = (data) => {
     fs.writeFileSync('./sockets.yaml', yamlStr, 'utf8');
 }
 
+const measurementProducts = [
+    'Smart Socket-16A',
+    'Smart Socket-10A'
+]
+
 const write = () => {
     const devices = loadDevices().bound.map(d => {
-        return {
+        let newDevice = {
             host: d.ip,
             device_id: d.id,
-            local_key: d.localKey,
+            local_key: d.local_key,
             friendly_name: d.name,
-            protocol_version: d.version,
+            protocol_version: d.version || "3.1",
             entities: [
+                { 
+                    platform: 'switch',
+                    friendly_name: `${d.name} Current`,
+                    id: 1,
+                },
+            ]
+        }
+
+        if(measurementProducts.includes(d.product_name)) {
+            newDevice.entities = [
                 { 
                     platform: 'sensor',
                     friendly_name: `${d.name} Current`,
@@ -40,14 +55,12 @@ const write = () => {
                     devices_class: 'voltage',
                     unit_of_measurement: 'V'
                 },
-                { 
-                    platform: 'switch',
-                    friendly_name: `${d.name} Current`,
-                    id: 1,
-                },
+                ...newDevice.entities
             ]
         }
+        return newDevice
     })
+
     writeOutYaml(devices)
 }
 write()
