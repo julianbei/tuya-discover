@@ -8,10 +8,10 @@ const findDeviceInNetwork = async ({id, local_key}) => {
   return d
 }
 
-const longScan = async ({id, local_key}) => {
+const longScan = async ({id, local_key}, timeout) => {
     const devices = new TuyAPI({id, key: local_key})
     const options = {
-        timeout: 15,
+        timeout,
         all: true
     }
     const result = await devices.find(options)

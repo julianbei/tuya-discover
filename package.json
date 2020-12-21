@@ -13,6 +13,8 @@
   "dependencies": {
     "@tuyapi/link": "^0.3.3",
     "@tuyapi/openapi": "^1.2.0",
+    "cli-progress": "^3.8.2",
+    "cli-table": "^0.3.4",
     "js-yaml": "^3.14.1",
     "ora": "^5.1.0",
     "prompt": "^1.0.0",

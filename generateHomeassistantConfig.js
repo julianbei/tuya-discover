@@ -23,7 +23,7 @@ const write = () => {
             entities: [
                 { 
                     platform: 'switch',
-                    friendly_name: `${d.name} Current`,
+                    friendly_name: `${d.name}`,
                     id: 1,
                 },
             ]
@@ -33,26 +33,26 @@ const write = () => {
             newDevice.entities = [
                 { 
                     platform: 'sensor',
-                    friendly_name: `${d.name} Current`,
+                    friendly_name: `${d.name} current`,
                     id: 18,
                     scaling: 0.1,
-                    devices_class: 'current',
+                    device_class: 'current',
                     unit_of_measurement: 'mA'
                 },
                 { 
                     platform: 'sensor',
-                    friendly_name: `${d.name} Current Consumption`,
+                    friendly_name: `${d.name} power Consumption`,
                     id: 19,
                     scaling: 0.1,
-                    devices_class: 'current_consumption',
+                    device_class: 'power',
                     unit_of_measurement: 'W'
                 },
                 { 
                     platform: 'sensor',
-                    friendly_name: `${d.name} Current Voltage`,
+                    friendly_name: `${d.name} voltage`,
                     id: 20,
                     scaling: 0.1,
-                    devices_class: 'voltage',
+                    device_class: 'voltage',
                     unit_of_measurement: 'V'
                 },
                 ...newDevice.entities
